@@ -1,4 +1,4 @@
-## 题解 CF409H 【A + B Strikes Back】
+## 题解 CF409H [A + B Strikes Back]
 
 ~~本蒟蒻又来刷水题辣~~
 
