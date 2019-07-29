@@ -1,37 +1,82 @@
-## Welcome to GitHub Pages
+## 题解 CF409H 【A + B Strikes Back】
 
-You can use the [editor on GitHub](https://github.com/SeashellBaylor/ProblemCF409H/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+~~本蒟蒻又来刷水题辣~~
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+代码如下：
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+朴素做法：
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    cout<<a+b;
+    return 0;
+}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+有了快读：
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int a,b;
+int read()
+{
+	int r=0,f=1;
+	char c=getchar();
+	while((c<'0'||c>'9')&&c!='-')
+		c=getchar();
+	if(c=='-')
+		f=-1,c=getchar();
+	while(c<='9'&&c>='0')
+		r=r*10+c-'0',c=getchar();
+	return r*f;
+}
+int main()
+{
+	a=read();
+    	b=read();
+        printf("%d",a+b);
+        return 0;
+}
+```
+用高精度：
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SeashellBaylor/ProblemCF409H/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```cpp
+#include <bits/stdc++.h>
+#define ri register int
+#define maxn 510
+using namespace std;
+string s1,s2;
+int a[maxn],b[maxn],c[maxn],la,lb,len;
+int main()
+{
+    getline(cin,s1);
+    getline(cin,s2);
+    if(s1[0]==48&&s2[0]==48){
+        printf("0");
+        return 0;
+    }
+    la=s1.size();
+	lb=s2.size();
+    for(ri i=0;i<la;i++)
+        a[la-i-1]=s1[i]-48;
+    for(ri i=0;i<lb;i++)
+        b[lb-i-1]=s2[i]-48;
+    len=max(la,lb);
+    for(ri i=0; i<len; i++)
+	{
+        c[i]+=a[i]+b[i];
+        c[i+1]=c[i]/10;
+        c[i]%=10;
+    }
+    len++;
+    while(c[len]==0)
+        len--; 
+    for(ri i=len; i>=0; i--)
+        printf("%d",c[i]);
+    return 0;
+}
+```
